@@ -15,13 +15,13 @@ export default function StackNavigator() {
             <Stack.Screen
                 name='Login'
                 component={LoginScreen}
-                options={{ headerShown: false, statusBarStyle: 'light', statusBarTranslucent: true }}
+                options={{ headerShown: false, statusBarTranslucent: true }}
             />
-            {/* <Stack.Screen
+            <Stack.Screen
                 name='App'
                 component={DrawerNavigator}
-                options={{ headerShown: false, statusBarStyle: 'light', statusBarTranslucent: true }}
-            /> */}
+                options={{ headerShown: false, statusBarTranslucent: true }}
+            />
         </Stack.Navigator>
     );
 };
