@@ -9,9 +9,15 @@ const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
     return (
         <Drawer.Navigator>
-            <Drawer.Screen name="DrawerHome" component={TabNavigator} />
-            <Drawer.Screen name="BDM" component={BDMScreen} />
-            <Drawer.Screen name="Telegram" component={TelegramScreen} />
+            <Drawer.Screen name="DrawerHome" component={TabNavigator}
+                options={{ headerTintColor: '#F0F0F0', headerStyle: { backgroundColor: '#000000' } }}
+            />
+            <Drawer.Screen name="BDM" component={BDMScreen}
+                options={{ headerTintColor: '#F0F0F0', headerStyle: { backgroundColor: '#000000' } }}
+            />
+            <Drawer.Screen name="Telegram" component={TelegramScreen}
+                options={{ headerTintColor: '#F0F0F0', headerStyle: { backgroundColor: '#000000' } }}
+            />
         </Drawer.Navigator>
     );
 }

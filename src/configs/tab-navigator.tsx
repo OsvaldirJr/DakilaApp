@@ -29,9 +29,9 @@ export default function TabNavigator() {
             })}
 
         >
-            <Tab.Screen name="Home" component={HomeScreen} options={{ headerTintColor: '#F0F0F0', headerStyle: ({ backgroundColor: '#000000' }) }} />
-            <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerTintColor: '#F0F0F0', headerStyle: ({ backgroundColor: '#000000' }) }} />
-            <Tab.Screen name="Payments" component={PaymentsScreen} options={{ headerTintColor: '#F0F0F0', headerStyle: ({ backgroundColor: '#000000' }) }} />
+            <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+            <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
+            <Tab.Screen name="Payments" component={PaymentsScreen} options={{ headerShown: false }} />
         </Tab.Navigator>
     );
 };
