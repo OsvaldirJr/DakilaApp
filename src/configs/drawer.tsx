@@ -13,10 +13,10 @@ export default function DrawerNavigator() {
                 options={{ headerTintColor: '#F0F0F0', headerStyle: { backgroundColor: '#000000' } }}
             />
             <Drawer.Screen name="BDM" component={BDMScreen}
-                options={{ headerTintColor: '#F0F0F0', headerStyle: { backgroundColor: '#000000' } }}
+                options={{ headerTitle: 'BDM Digital', headerTintColor: '#F0F0F0', headerStyle: { backgroundColor: '#000000' } }}
             />
             <Drawer.Screen name="Telegram" component={TelegramScreen}
-                options={{ headerTintColor: '#F0F0F0', headerStyle: { backgroundColor: '#000000' } }}
+                options={{ headerTitle: 'Grupos Telegram', headerTintColor: '#F0F0F0', headerStyle: { backgroundColor: '#000000' } }}
             />
         </Drawer.Navigator>
     );
