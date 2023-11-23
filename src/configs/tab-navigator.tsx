@@ -15,6 +15,7 @@ export default function TabNavigator() {
 
                     if (route.name === 'Home') {
                         iconName = 'home';
+                        
                     } else if (route.name === 'Profile') {
                         iconName = 'user';
                     } else if (route.name === 'Payments') {
