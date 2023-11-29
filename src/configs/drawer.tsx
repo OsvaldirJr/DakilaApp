@@ -6,10 +6,15 @@ import BDMScreen from '../modules/bdm-digital-module';
 import TelegramScreen from '../modules/grupos-telegram-module';
 import MapScreen from '../modules/map-module';
 import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Drawer = createDrawerNavigator();
 
 const CustomDrawer = (props: any) => {
+    const logout = async ()=>{
+        await AsyncStorage.clear()
+        props.navigation.navigate('Login')
+    }
     return (
         <DrawerContentScrollView {...props}>
             <View className='bg-black h-[12vh] items-center justify-start flex-row pl-2 gap-x-2' style={{ elevation: 8 }}>
@@ -24,7 +29,7 @@ const CustomDrawer = (props: any) => {
                 <TouchableHighlight
                     className='mx-3 px-2 rounded-md'
                     underlayColor={'#C4C4C4'}
-                    onPress={() => { props.navigation.navigate('Login') }}
+                    onPress={logout}
                 >
                     <View className='flex-row w-full gap-x-8 items-center my-2'>
                         <Ionicons

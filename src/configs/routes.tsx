@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../modules/login-module';
 import DrawerNavigator from './drawer';
 import UserEdit from '../modules/profile-module/components/user-Edit';
+import AuthLoadingPage from './components/AuthVerifyPage';
 
 
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigator() {
-
+    
     return (
         <Stack.Navigator
-            initialRouteName='Login'
+            initialRouteName='AuthLoadingPage'
         >
+             <Stack.Screen
+                name='AuthLoadingPage'
+                component={AuthLoadingPage}
+                options={{ headerShown: false, statusBarTranslucent: true }}
+            />
             <Stack.Screen
                 name='Login'
                 component={LoginScreen}
