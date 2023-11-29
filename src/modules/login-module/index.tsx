@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableHighlight, Image, TextInput, Alert} from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import * as Gradients from '../../shared/Styles/Colors/gradients';
 import api from '../../shared/services/api';
 import { object, string, ValidationError } from 'yup';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { AppContext } from '../../contexts/app-context';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen({ navigation }: any) {
     const schema = object().shape({
@@ -24,12 +24,13 @@ export default function LoginScreen({ navigation }: any) {
         try{
             setLoading(true)
             await schema.validate({email, password})
-            api.post(`/api/login`, JSON.stringify({email, password}), {headers:{ 'Content-Type': 'application/json'}}).then((result)=>{
+            api.post(`/api/login`, JSON.stringify({email, password}), {headers:{ 'Content-Type': 'application/json'}}).then(async (result)=>{
                 setLoading(false)
                 signIn(email, password)
-                localStorage.setItem('token', result.data.jwt_token)
+                await AsyncStorage?.setItem('token', result.data.jwt_token)
                 navigation.navigate('App')
-            }).catch(()=>{
+            }).catch((err)=>{
+                console.log(err)
                 setError(['Usuário ou senha incorretos'])
                 setLoading(false)
             })
