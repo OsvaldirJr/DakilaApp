@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
+import { AppContext } from '../../../contexts/app-context';
 import { View, ScrollView, Text, TextInput, Image, TouchableHighlight, Button } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Gradients from '../../../shared/Styles/Colors/gradients';
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker'
 
 
-export default function UserEdit() {
+export default function UserEdit(props: any) {
     const [profileImage, setProfileImage] = useState('https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
-    const [userName, setUserName] = useState('Usuário Exemplo');
+    const [userName, setUserName] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [newPasswordConfirmation, setNewPasswordConfirmation] = useState('');
-    const [phone, setPhone] = useState('(51) 91122-3344');
-    const [resPhone, setResPhone] = useState('(51) 98877-6655');
+    const [phone, setPhone] = useState('');
+    const [resPhone, setResPhone] = useState('');
     const [birthDate, setBirthDate] = useState(new Date('1992-07-24T02:13:49.597Z'))
+    const [newUser, setNewUser] = useState({})
+
+    const { user, editUser } = useContext<any>(AppContext);
+
+    useEffect(() => {
+        setUserName(user.userName)
+        setPhone(user.phone)
+        setResPhone(user.resPhone)
+        // ver uma forma de passar o Date para string no formato correto e adicionar ao valor do campo antes de
+        // adicionar o valor do DB
+        //setBirthDate(user.birthDate)
+    }, []);
 
     const onChange = (event: any, selectedDate: any) => {
         const currentDate = selectedDate;
@@ -32,6 +45,23 @@ export default function UserEdit() {
     const showDatepicker = () => {
         showMode();
     };
+
+    function saveBtnHandler() {
+        setNewUser({
+            isLogged: true,
+            email: user.email,
+            userName: userName === '' ? user.userName : userName,
+            birthDate: user.birthDate,
+            core: user.core,
+            group: user.group,
+            symbol: user.symbol,
+            frequency: user.frequency,
+            phone: phone === '' ? user.phone : phone,
+            resPhone: resPhone === '' ? user.resPhone : resPhone
+        })
+        editUser(newUser)
+        props.navigation.goBack()
+    }
 
     return (
         <ScrollView className='flex-1 bg-white60 px-4'>
@@ -122,12 +152,7 @@ export default function UserEdit() {
                     activeOpacity={0.5}
                     underlayColor="#E3E3E3"
                     onPress={() => {
-                        console.log('Nome: ', userName)
-                        console.log('Aniversário: ', birthDate)
-                        console.log(newPassword ? newPassword : 'nenhuma senha informada')
-                        console.log(newPasswordConfirmation ? newPasswordConfirmation : 'nenhuma senha confirmada')
-                        console.log('Telefone: ', phone)
-                        console.log('Telefone responsável: ', resPhone)
+                        saveBtnHandler()
                     }}
                 >
                     <LinearGradient
