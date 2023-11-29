@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableHighlight, Image, TextInput } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, TouchableHighlight, Image, TextInput, Alert } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import * as Gradients from '../../shared/Styles/Colors/gradients';
+import { AppContext } from '../../contexts/app-context';
 
 export default function LoginScreen({ navigation }: any) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const { signIn } = useContext<any>(AppContext);
+
+    function loginHandler() {
+        signIn(email, password)
+    };
 
     return (
         <LinearGradient
@@ -18,16 +27,42 @@ export default function LoginScreen({ navigation }: any) {
 
             <View className="flex-1 w-full flex-col justify-center gap-y-3">
                 <View>
-                    <Text className="block text-sm font-medium leading-6 text-white60">Email address</Text>
-                    <TextInput id="email" placeholder='Seu e-mail' className="w-full px-2 rounded-md border-0 py-1.5 text-grayDark bg-white60" />
+                    <Text className="block text-sm font-medium leading-6 text-white60">E-mail</Text>
+                    <TextInput
+                        id="email"
+                        placeholder='Seu e-mail'
+                        className="w-full px-2 rounded-md border-0 py-1.5 text-grayDark bg-white60"
+                        onChangeText={(newValue: string) => {
+                            setEmail(newValue)
+                        }}
+                    />
                 </View>
 
                 <View>
-                    <Text className="block text-sm font-medium leading-6 text-white60">Password</Text>
-                    <TextInput id="password" placeholder='Sua senha' secureTextEntry={true} className="w-full px-2 rounded-md py-1.5 text-grayDark bg-white60" />
+                    <Text className="block text-sm font-medium leading-6 text-white60">Senha</Text>
+                    <TextInput
+                        id="password"
+                        placeholder='Sua senha'
+                        secureTextEntry={true}
+                        className="w-full px-2 rounded-md py-1.5 text-grayDark bg-white60"
+                        onChangeText={(newValue: string) => {
+                            setPassword(newValue)
+                        }}
+                    />
                 </View>
 
-                <TouchableHighlight onPress={() => { navigation.navigate('App') }}>
+                <TouchableHighlight
+                    onPress={() => {
+                        if (email === '') {
+                            Alert.alert('Erro de autenticação', 'Favor informar o E-mail')
+                        } else if (password === '') {
+                            Alert.alert('Erro de autenticação', 'Favor informar a senha')
+                        } else {
+                            loginHandler();
+                            navigation.navigate('App')
+                        }
+                    }}
+                >
                     <LinearGradient
                         colors={Gradients.goldGradient}
                         end={{ x: 1, y: 1 }}

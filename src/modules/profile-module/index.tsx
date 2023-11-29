@@ -1,9 +1,13 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, ScrollView, Text, Image, TouchableHighlight } from 'react-native';
 import * as Gradients from '../../shared/Styles/Colors/gradients';
+import { AppContext } from '../../contexts/app-context';
 
 export default function ProfileScreen(props: any) {
+    const { user } = useContext<any>(AppContext);
+
+
     return (
         <ScrollView className='flex-1 bg-white60 px-4'>
             <View className='w-full justify-center items-center py-8 gap-y-4'>
@@ -11,13 +15,13 @@ export default function ProfileScreen(props: any) {
                     <Image className='w-40 h-40' source={{ uri: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }} />
                 </View>
                 <Text className='font-bold text-xl'>
-                    Usuário Exemplo
+                    {user.userName}
                 </Text>
             </View>
             <View className='gap-y-2 mb-4'>
                 <Text className='text-base font-medium'>E-mail</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>user@gmail.com</Text>
+                    <Text className='text-grayDark'>{user.email}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>
@@ -66,7 +70,7 @@ export default function ProfileScreen(props: any) {
                 <TouchableHighlight className='my-4 w-full rounded-md'
                     activeOpacity={0.5}
                     underlayColor="#E3E3E3"
-                    onPress={() => {props.navigation.navigate('UserEdit')}}>
+                    onPress={() => { props.navigation.navigate('UserEdit') }}>
                     <LinearGradient
                         style={{ elevation: 4 }}
                         colors={Gradients.goldGradient}
