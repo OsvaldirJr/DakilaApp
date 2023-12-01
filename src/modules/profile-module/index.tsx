@@ -50,43 +50,43 @@ export default function ProfileScreen(props: any) {
             <View className='gap-y-2'>
                 <Text className='text-base font-medium'>Data de Nascimento</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>{getDate(userData?.birthdate)}</Text>
+                    <Text className='text-grayDark'>{user.birthDate}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>
                 <Text className='text-base font-medium'>Núcleo</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>Rio Grande do Sul</Text>
+                    <Text className='text-grayDark'>{user.core}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>
                 <Text className='text-base font-medium'>Grupo</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>Harmonia</Text>
+                    <Text className='text-grayDark'>{user.group}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>
                 <Text className='text-base font-medium'>Simbologia</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>Sim</Text>
+                    <Text className='text-grayDark'>{user.symbol ? 'Sim' : 'Não'}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>
                 <Text className='text-base font-medium'>Frequência de Onda</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>Sim</Text>
+                    <Text className='text-grayDark'>{user.frequency ? 'Sim' : 'Não'}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>
                 <Text className='text-base font-medium'>Número de Telefone</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>(51) 91122-3344</Text>
+                    <Text className='text-grayDark'>{user.phone}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>
                 <Text className='text-base font-medium'>Número de Telefone Responsável</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>(51) 98877-6655</Text>
+                    <Text className='text-grayDark'>{user.resPhone}</Text>
                 </View>
             </View>
             <View className='items-center'>
