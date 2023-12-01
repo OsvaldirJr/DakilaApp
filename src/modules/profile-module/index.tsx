@@ -1,33 +1,56 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, ScrollView, Text, Image, TouchableHighlight } from 'react-native';
 import * as Gradients from '../../shared/Styles/Colors/gradients';
 import { AppContext } from '../../contexts/app-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ProfileScreen(props: any) {
     const { user } = useContext<any>(AppContext);
+    const [userData, setUser] = useState<any>();
 
+    const getDate = (dateString: string)=>{
+        let newDate = ''
+       
+        if(dateString)
+        for(let i = 0;i<dateString?.length; i++ ){
+            if(i==2 || i==4){
+                newDate = newDate +'/'+ dateString[i]?.toString()
+            }
+            else{
+                newDate = newDate + dateString[i]?.toString()
+            }
+        }
+        return newDate
+    }
 
+    const verifyUser = async()=>{
+        const userJson = await AsyncStorage.getItem('user');
+        setUser(JSON.parse(userJson!).user)
+    }
+    useEffect(()=>{
+        verifyUser()
+    },[])
     return (
         <ScrollView className='flex-1 bg-white60 px-4'>
             <View className='w-full justify-center items-center py-8 gap-y-4'>
                 <View className='rounded-full overflow-hidden' style={{ elevation: 8 }}>
-                    <Image className='w-40 h-40' source={{ uri: 'https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }} />
+                    <Image className='w-40 h-40' source={{ uri: userData?.imageurl }} />
                 </View>
                 <Text className='font-bold text-xl'>
-                    {user.userName}
+                    {userData?.name}
                 </Text>
             </View>
             <View className='gap-y-2 mb-4'>
                 <Text className='text-base font-medium'>E-mail</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>{user.email}</Text>
+                    <Text className='text-grayDark'>{userData?.email}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>
                 <Text className='text-base font-medium'>Data de Nascimento</Text>
                 <View className='justify-center px-2 rounded-md bg-grayLight h-12'>
-                    <Text className='text-grayDark'>24/07/1992</Text>
+                    <Text className='text-grayDark'>{getDate(userData?.birthdate)}</Text>
                 </View>
             </View>
             <View className='gap-y-2'>

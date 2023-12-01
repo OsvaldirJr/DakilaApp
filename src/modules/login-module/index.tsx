@@ -27,7 +27,7 @@ export default function LoginScreen({ navigation }: any) {
             api.post(`/api/login`, JSON.stringify({email, password}), {headers:{ 'Content-Type': 'application/json'}}).then(async (result)=>{
                 setLoading(false)
                 signIn(email, password)
-                await AsyncStorage?.setItem('token', result.data.jwt_token)
+                await AsyncStorage?.setItem('user', JSON.stringify(result.data))
                 navigation.navigate('App')
             }).catch((err)=>{
                 console.log(err)

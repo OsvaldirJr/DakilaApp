@@ -95,16 +95,15 @@ export default function HomeScreen() {
                         Últimas Notícias
                     </Text>
                 </View>
-                <ScrollView horizontal={true} className='mb-10'>
-                    <View className='ml-4'>
-                        <FlatList
-                            horizontal={true}
-                            data={DATA}
-                            renderItem={({ item }) => <CarousselItem title={item.title} date={item.date} img={item.img} />}
-                            keyExtractor={item => item.id}
-                        />
-                    </View>
-                </ScrollView>
+                
+                <FlatList
+                className='ml-4'
+                    horizontal={true}
+                    data={DATA}
+                    renderItem={({ item }) => <CarousselItem title={item.title} date={item.date} img={item.img} />}
+                    keyExtractor={item => item.id}
+                />
+                
                 <ImageBackground source={{ uri: 'https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaDeWUntQ5Sl5CaZPEnj0ZkipKOlDQDlzqY1N4QJzjHrn9LjqxOuuOJYyGS-m1CkOoMGMGOXuVrf5bqyjuBFA6VF7pF4=w1879-h970' }}
                     resizeMode='stretch'
                     className='w-full h-[80vw] justify-center items-center'

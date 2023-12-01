@@ -10,7 +10,7 @@ const AuthLoadingPage: React.FC = () => {
 
   const _bootstrapAsync = async () => {
     try {
-      const user = await AsyncStorage.getItem('token');
+      const user = await AsyncStorage.getItem('user');
       if (user) {
         setLoading(true)
         navigate('App');

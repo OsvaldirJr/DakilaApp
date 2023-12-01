@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, ScrollView, Text, TextInput, Image, TouchableHighlight, Button } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Gradients from '../../../shared/Styles/Colors/gradients';
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function UserEdit() {
     const [profileImage, setProfileImage] = useState('https://images.unsplash.com/photo-1521119989659-a83eee488004?q=80&w=1923&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
@@ -32,6 +32,14 @@ export default function UserEdit() {
     const showDatepicker = () => {
         showMode();
     };
+
+    const verifyUser = async()=>{
+        const user = await AsyncStorage.getItem('user');
+        console.log(user)
+    }
+    useEffect(()=>{
+        verifyUser()
+    },[])
 
     return (
         <ScrollView className='flex-1 bg-white60 px-4'>
