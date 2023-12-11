@@ -14,15 +14,16 @@ const AuthLoadingPage: React.FC = () => {
       if (user) {
         setLoading(true)
         navigate('App');
-        return 
+        return
       }
       setLoading(false)
       navigate('Login');
-     
+
     } catch (e) {
       await AsyncStorage.clear();
       navigate('Login');
     }
+    //navigate("App")
   };
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const AuthLoadingPage: React.FC = () => {
 
   return (
     <View>
-          {/* <Spinner
+      {/* <Spinner
           visible={loading}
           textContent={'Carregando...'}
           textStyle={{color: '#FFF'}}

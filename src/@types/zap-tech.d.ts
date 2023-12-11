@@ -1,0 +1,1 @@
+declare module "@zapt-tech/react-native-zapt-sdk"

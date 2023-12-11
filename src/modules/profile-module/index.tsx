@@ -35,7 +35,7 @@ export default function ProfileScreen(props: any) {
         <ScrollView className='flex-1 bg-white60 px-4'>
             <View className='w-full justify-center items-center py-8 gap-y-4'>
                 <View className='rounded-full overflow-hidden' style={{ elevation: 8 }}>
-                    <Image className='w-40 h-40' source={{ uri: userData?.imageurl }} />
+                    <Image className='w-40 h-40 bg-white60' source={{ uri: userData?.imageurl }} />
                 </View>
                 <Text className='font-bold text-xl'>
                     {userData?.name}
