@@ -55,11 +55,11 @@ export function LoginScreen({ navigation }: any) {
             <View style={styles.formWrapper}>
                 <View>
                     <Text style={styles.text}>Email address</Text>
-                    <TextInput style={styles.textImput} autoCapitalize="none" value={email} onChangeText={setEmail} id="email" placeholder='Seu e-mail' />
+                    <TextInput style={styles.textInput} autoCapitalize="none" value={email} onChangeText={setEmail} id="email" placeholder='Seu e-mail' />
                 </View>
                 <View>
                     <Text style={styles.text}>Password</Text>
-                    <TextInput value={password} onChangeText={setPassword} id="password" placeholder='Sua senha' secureTextEntry={true} style={styles.textImput} />
+                    <TextInput value={password} onChangeText={setPassword} id="password" placeholder='Sua senha' secureTextEntry={true} style={styles.textInput} />
                 </View>
                 <TouchableHighlight onPress={login}>
                     <LinearGradient
@@ -67,13 +67,24 @@ export function LoginScreen({ navigation }: any) {
                         end={{ x: 1, y: 1 }}
                         style={styles.button}
                     >
-                        <Text style={styles.textBotton}>ENTRAR</Text>
+                        <Text style={styles.textButton}>ENTRAR</Text>
                     </LinearGradient>
                 </TouchableHighlight>
                 <TouchableHighlight onPress={() => { console.log('esqueci') }}>
-                    <Text style={styles.textRecovery}>
+                    <Text style={styles.pressableText}>
                         ESQUECEU SUA SENHA?
                     </Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={() => { navigation.navigate('SignUp') }}>
+                    <View>
+                        <Text style={styles.pressableText}>
+                            Não tem login?
+                        </Text>
+                        <Text style={styles.signUpText}>
+                            Cadastre-se
+                        </Text>
+                    </View>
                 </TouchableHighlight>
             </View>
         </LinearGradient>
