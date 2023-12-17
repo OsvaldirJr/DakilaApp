@@ -8,9 +8,9 @@ export default function MapScreen() {
     return (
         <View style={styles.container}>
             <ZaptMap
-        placeID={'-njt255g4yspfdlqu7uz'}
-        options={{floorId: 1, displayButtonList: false}}
-      />
+                placeID={'-njt255g4yspfdlqu7uz'}
+                options={{floorId: 1, displayButtonList: false}}
+            />
         </View>
     )
 }
