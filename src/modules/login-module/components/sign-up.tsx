@@ -3,6 +3,8 @@ import { View, Text, TouchableHighlight, Image, TextInput, ScrollView } from 're
 import { LinearGradient } from "expo-linear-gradient";
 import * as Gradients from '../../../shared/Styles/Colors/gradients';
 import { styles } from './styles';
+import Checkbox from 'expo-checkbox';
+import RNPickerSelect from 'react-native-picker-select';
 
 export default function SignUpScreen({ navigation }: any) {
     const [username, setUsername] = useState('');
@@ -11,6 +13,8 @@ export default function SignUpScreen({ navigation }: any) {
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [isAssociate, setIsAssociate] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedState, setSelectedState] = useState('');
 
 
     return (
@@ -21,11 +25,6 @@ export default function SignUpScreen({ navigation }: any) {
                 style={styles.container}
             >
                 <ScrollView style={styles.scrollView}>
-                    <Text style={styles.text}>
-                        País (select)
-                        Estado (select, campo visível apenas se o país for Brasil)
-                        Checkbox: Declaro que sou um(a) Associado(a), titular ou dependente, de Dakila Pesquisas. Sob pena de consequências jurídicas.
-                    </Text>
                     <Image
                         style={styles.image}
                         source={require('../../../shared/assets/logo-dakila.png')}
@@ -40,6 +39,39 @@ export default function SignUpScreen({ navigation }: any) {
                             <TextInput value={document} onChangeText={setDocument} id="document" placeholder='Seu documento' style={styles.textInput} />
                         </View>
                         <View>
+                            <Text style={styles.text}>País</Text>
+                            <RNPickerSelect
+                                placeholder={'Selecione seu país'}
+                                style={{ viewContainer: { backgroundColor: 'white', height: 46, borderRadius: 6, width: '100%', justifyContent: 'center', marginBottom: 12 } }}
+                                onValueChange={(value) => { setSelectedCountry(value), console.log(selectedCountry) }}
+                                value={selectedCountry}
+                                items={[
+                                    { label: 'Brasil', value: 'Brasil', key: 0 },
+                                    { label: 'Estados Unidos', value: 'Estados Unidos', key: 1 },
+                                    { label: 'Canada', value: 'Canada', key: 2 },
+                                ]}
+                            />
+                        </View>
+                        {
+                            selectedCountry === 'Brasil'
+                                ?
+                                <View>
+                                    <Text style={styles.text}>Estado</Text>
+                                    <RNPickerSelect
+                                        placeholder={'Selecione seu país'}
+                                        style={{ viewContainer: { backgroundColor: 'white', height: 46, borderRadius: 6, width: '100%', justifyContent: 'center', marginBottom: 12 } }}
+                                        onValueChange={(value) => { setSelectedState(value), console.log(selectedState) }}
+                                        value={selectedState}
+                                        items={[
+                                            { label: 'Rio Grande do Sul', value: 'rio grande do sul', key: 0 },
+                                            { label: 'São Paulo', value: 'sao paulo', key: 1 },
+                                            { label: 'Saldavor', value: 'salvador', key: 2 },
+                                        ]}
+                                    />
+                                </View>
+                                : <></>
+                        }
+                        <View>
                             <Text style={styles.text}>E-Mail</Text>
                             <TextInput autoCapitalize="none" value={email} onChangeText={setEmail} id="email" placeholder='Seu e-mail' style={styles.textInput} />
                         </View>
@@ -51,8 +83,13 @@ export default function SignUpScreen({ navigation }: any) {
                             <Text style={styles.text}>Confirmação de senha</Text>
                             <TextInput value={passwordConfirmation} onChangeText={setPasswordConfirmation} id="password" placeholder='Sua senha' secureTextEntry={true} style={styles.textInput} />
                         </View>
+                        <View style={styles.checkboxContainer}>
+                            <Checkbox value={isAssociate} onValueChange={setIsAssociate} color={isAssociate ? '#E2C535' : undefined} />
+                            <Text onPress={() => setIsAssociate(!isAssociate)} style={styles.checkboxText}>Declaro que sou um(a) Associado(a), titular ou dependente, de Dakila Pesquisas. Sob pena de consequências jurídicas.</Text>
+                        </View>
                     </View>
                 </ScrollView>
+
 
                 <TouchableHighlight
                     onPress={

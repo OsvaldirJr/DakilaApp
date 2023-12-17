@@ -80,4 +80,17 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         color: '#FFF',
     },
+    checkboxContainer: {
+        width: '100%',
+        alignItems: 'center',
+        flexDirection: 'row',
+        gap: 10,
+        marginTop: 16,
+        marginBottom: 8
+    },
+    checkboxText: {
+        fontSize: 11,
+        color: '#FFFF',
+        flex: 1
+    },
 })
