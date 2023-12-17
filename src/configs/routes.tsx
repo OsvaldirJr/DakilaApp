@@ -4,6 +4,7 @@ import { LoginScreen } from '../modules/login-module';
 // import DrawerNavigator from './drawer';
 // import UserEdit from '../modules/profile-module/components/user-Edit';
 import AuthLoadingPage from './components/AuthVerifyPage';
+import DrawerNavigator from './drawer';
 
 
 const Stack = createNativeStackNavigator();
@@ -24,11 +25,11 @@ export default function StackNavigator() {
                 component={LoginScreen}
                 options={{ headerShown: false, statusBarTranslucent: true }}
             />
-            {/* <Stack.Screen
+            <Stack.Screen
                 name='App'
                 component={DrawerNavigator}
                 options={{ headerShown: false, statusBarTranslucent: true }}
-            /> */}
+            />
             {/* <Stack.Screen
                 name='UserEdit'
                 component={UserEdit}

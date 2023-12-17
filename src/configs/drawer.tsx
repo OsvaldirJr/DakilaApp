@@ -20,32 +20,46 @@ const CustomDrawer = (props: any) => {
         <DrawerContentScrollView {...props}>
             <View style={[{ elevation: 8 }, drawerStyles.drawerContainer]}>
                 <Image
-                    className='w-14 h-14 rounded-full'
+                    // className='w-14 h-14 rounded-full'
                     source={{ uri: 'https://us.edu.pl/wp-content/uploads/obrazki-stron/cbns/blank-profile-picture-973460_640.png' }}
                 />
-                <Text className='text-white60 text-lg'> User Name Sample </Text>
+                <Text 
+                // className='text-white60 text-lg'
+                > User Name Sample </Text>
             </View>
-            <View className='bg-white60 h-[58vh]'>
+            <View 
+            // className='bg-white60 h-[58vh]'
+            >
                 <DrawerItemList {...props} />
                 <TouchableHighlight
-                    className='mx-3 px-2 rounded-md'
+                    // className='mx-3 px-2 rounded-md'
                     underlayColor={'#C4C4C4'}
                     onPress={logout}
                 >
-                    <View className='flex-row w-full gap-x-8 items-center my-2'>
+                    <View 
+                    // className='flex-row w-full gap-x-8 items-center my-2'
+                    >
                         <Ionicons
                             style={{ marginRight: -18 }}
                             name="md-exit-outline"
                             size={24}
                             color={'#000000'}
                         />
-                        <Text className='text-grayDark'>Sair</Text>
+                        <Text 
+                        // className='text-grayDark'
+                        >Sair</Text>
                     </View>
                 </TouchableHighlight>
             </View>
-            <View className='bg-white60 items-center justify-center border border-gray30 h-[22vh]'>
-                <Text className='text-grayDark'>Ecossistema Dakila.</Text>
-                <Text className='text-grayDark'>Todos os direitos reservados.</Text>
+            <View 
+            // className='bg-white60 items-center justify-center border border-gray30 h-[22vh]'
+            >
+                <Text 
+                // className='text-grayDark'
+                >Ecossistema Dakila.</Text>
+                <Text 
+                // className='text-grayDark'
+                >Todos os direitos reservados.</Text>
             </View>
         </DrawerContentScrollView>
     )
