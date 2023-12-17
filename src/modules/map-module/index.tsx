@@ -1,10 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import { styles } from './styles'
 
 export default function MapScreen() {
     return (
-        <View className='flex-1 justify-center items-center'>
+        <View style={styles.container}>
             <MapView
                 style={{ width: '100%', height: '100%' }}
                 region={{
