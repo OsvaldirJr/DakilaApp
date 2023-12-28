@@ -24,6 +24,7 @@ export function LoginScreen({ navigation }: any) {
         try {
             setLoading(true)
             await schema.validate({ email, password })
+            console.log(password, email)
             api.post(`/api/login`, JSON.stringify({ email, password }), { headers: { 'Content-Type': 'application/json' } }).then(async (result) => {
                 setLoading(false)
                 signIn(email, password)
